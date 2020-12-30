@@ -1,3 +1,6 @@
-192.168.10.151
-192.168.10.152
-192.168.10.153
+[web_servers]
+192.168.10.151 package_apache=apache2 package_php=php
+[db_servers]
+192.168.10.152 package_apache=apache2 package_php=php
+[file_servers]
+192.168.10.153 package_apache=apache2 package_php=php

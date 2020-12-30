@@ -1,0 +1,14 @@
+---
+
+- hosts: web_servers
+  become: true
+  tasks:
+
+  - name: copy html file
+    tags: apache
+    copy:
+      src: site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644

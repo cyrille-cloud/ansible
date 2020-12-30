@@ -1,0 +1,32 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: install updates Centos
+    tags: always
+    dnf:
+      update_cache: yes
+      update_only: yes
+    when: ansible_distribution == "CentOS"
+
+  - name: install updates Ubuntu
+    tags: always
+    apt:
+      update_cache: yes
+      upgrade: dist
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: web_servers
+  become: true
+  tasks:
+
+  - name: install apache2 and php
+    tags: ubuntu,apache
+    apt:
+      name:
+        - apache2
+        - php
+      state: latest
+    when: ansible_distribution == "Ubuntu"
